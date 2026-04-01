@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: #f4f6f8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ШАПКА: Всегда сверху */
+.header {
+    background-color: #fff;
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.ticket-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+.ticket-card {
+    background-color: #fff;
+    width: 100%;
+    max-width: 360px;
+    border-radius: 12px;
+    padding: 40px 20px 40px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    height: fit-content;
+    min-height: calc(100vh - 150px); 
+}
+
+/* ВИДЕО */
+.video-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px; /* УМЕНЬШИЛ: отступ под видео (было 30) */
+}
+
+.main-video {
+    width: 265px; 
+    height: auto;
+}
+
+/* ТЕКСТ: ИЗМЕНЕНИЯ ТУТ */
+
+.info-group {
+    margin-bottom: 12px; /* ИЗМЕНИЛ: расстояние между абзацами (было 18) */
+}
+
+.label {
+    display: block;
+    font-size: 15px;
+    color: #202124;
+    margin-bottom: 1px; /* ИЗМЕНИЛ: отступ между "Получатель" и текстом (было 3) */
+    
+}
+
+.value {
+    display: block;
+    font-size: 17.5px;
+    color: #202124;
+    line-height: 1.25; /* УМЕНЬШИЛ: плотность строк внутри текста (было 1.35) */
+   
+}
+
+.price {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* ФУТЕР */
+.footer {
+    background-color: #2d7abf;
+    color: white;
+    text-align: center;
+    padding: 40px 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.footer a {
+    color: white;
+    text-decoration: underline; /* ИЗМЕНИЛ: добавил подчеркивание (было none) */
+    display: block;
+    margin-top: 3px;
+    opacity: 0.9;
+}
