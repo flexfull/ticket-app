@@ -7,14 +7,20 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-        * {
-            box-sizing: border-box;
+        /* Убираем белые полосы по краям и снизу */
+        html, body {
+            background-color: #000; /* Фон всего окна теперь черный */
             margin: 0;
             padding: 0;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            background-color: #000;
             display: flex;
             justify-content: center;
             font-family: 'Roboto', sans-serif;
@@ -23,7 +29,8 @@
 
         .app-container {
             width: 100%;
-            height: 100%;
+            max-width: 417px;
+            min-height: 100vh;
             background-color: #1a1a1c;
             display: flex;
             flex-direction: column;
@@ -88,7 +95,6 @@
             font-size: 15px;
         }
 
-        /* СТРОКИ С ДАННЫМИ */
         .row {
             display: flex;
             justify-content: space-between;
@@ -106,7 +112,6 @@
             line-height: 1.3;
         }
 
-        /* БЛОКИ (Описание, Получатель) */
         .block {
             margin-bottom: 14px; 
         }
@@ -125,16 +130,16 @@
             margin-top: 2px;
         }
 
-        /* ФУТЕР (Почти не тронут) */
+        /* ФУТЕР (Размеры не менял) */
         .footer {
             background-color: #121212;
             padding: 200px;
             padding-bottom: 60px; 
             margin-top: auto;
-            position: relative; /* Добавлено, чтобы кнопка позиционировалась внутри него */
+            position: relative;
         }
 
-        /* ИСПРАВЛЕННАЯ КНОПКА */
+        /* КНОПКА (Как просил — в одну строчку и внизу) */
         .email-btn {
             background-color: transparent;
             border: 1px solid #1c2e21;
@@ -144,13 +149,11 @@
             font-size: 15px;
             font-weight: 500;
             text-align: center;
-            
-            /* Новые свойства для фиксации в одну строку и внизу */
             position: absolute;
             left: 16px;
             right: 16px;
-            bottom: 10px; /* Совпадает с твоим padding-bottom у футера */
-            white-space: nowrap; /* Запрет переноса текста */
+            bottom: 10px;
+            white-space: nowrap;
         }
     </style>
 </head>
