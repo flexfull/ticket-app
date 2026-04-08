@@ -190,11 +190,11 @@
             <a href="https://flexfull.github.io/ticket/" class="link">https://cshw.me/CBzfxCP7cfdapR</a>
         </div>
 
-        <div class="block">
+        <div id="receipt-info-block" class="block">
             <span class="label">Получатель</span>
-            <span class="value" id="receipt-garage">Оплата проезда в троллейбусе, гар. номер 36749</span>
+            <span id="receipt-text" class="value">Оплата проезда в автобусе, гар. номер 36749</span>
             <span class="value">г. Гомель</span>
-            <span class="value">ОАО "Гомельоблавтотранс" филиал "Горэлектротранспорт</span>
+            <span id="receipt-org" class="value">Филиал "Автобусный парк № 1"</span>
         </div>
 
         <div class="row">
@@ -224,33 +224,35 @@
 </div>
 
 <script>
-    const shareBtn = document.getElementById('share-btn');
-    const garageEl = document.getElementById('receipt-garage');
-    const dateEl = document.getElementById('receipt-date');
+    function updateBankUI() {
+        const garage = localStorage.getItem('cashew_garage') || "36749";
+        const date = localStorage.getItem('cashew_date') || "02.04.2026 9:38";
+        const type = localStorage.getItem('cashew_type') || "1"; // 1-автобус, 2-троллейбус
 
-    // Загрузка
-    window.addEventListener('DOMContentLoaded', () => {
-        const g = localStorage.getItem('cashew_garage');
-        const d = localStorage.getItem('cashew_date');
-        if (g) garageEl.innerText = `Оплата проезда в автобусе, гар. номер ${g}`;
-        if (d) dateEl.innerText = d;
-    });
-
-    // Изменение
-    shareBtn.addEventListener('click', () => {
-        let newG = prompt("Гаражный номер:", localStorage.getItem('cashew_garage') || "36749");
-        let newD = prompt("Дата и время:", localStorage.getItem('cashew_date') || "02.04.2026 9:38");
-
-        if (newG) {
-            localStorage.setItem('cashew_garage', newG);
-            garageEl.innerText = `Оплата проезда в автобусе, гар. номер ${newG}`;
+        document.getElementById('receipt-date').innerText = date;
+        
+        if (type === "2") {
+            document.getElementById('receipt-text').innerText = `Оплата проезда в троллейбусе, гар. номер ${garage}`;
+            document.getElementById('receipt-org').innerText = `ОАО "Гомельоблавтотранс" филиал "Горэлектротранспорт"`;
+        } else {
+            document.getElementById('receipt-text').innerText = `Оплата проезда в автобусе, гар. номер ${garage}`;
+            document.getElementById('receipt-org').innerText = `Филиал "Автобусный парк № 1"`;
         }
-        if (newD) {
-            localStorage.setItem('cashew_date', newD);
-            dateEl.innerText = newD;
-        }
+    }
+
+    window.addEventListener('DOMContentLoaded', updateBankUI);
+
+    document.getElementById('share-btn').addEventListener('click', () => {
+        let type = prompt("Выберите транспорт: 1 - Автобус, 2 - Троллейбус", localStorage.getItem('cashew_type') || "1");
+        let garage = prompt("Гаражный номер:", localStorage.getItem('cashew_garage') || "36749");
+        let date = prompt("Дата и время:", localStorage.getItem('cashew_date') || "02.04.2026 9:38");
+
+        if (type) localStorage.setItem('cashew_type', type);
+        if (garage) localStorage.setItem('cashew_garage', garage);
+        if (date) localStorage.setItem('cashew_date', date);
+        
+        updateBankUI();
     });
 </script>
-
 </body>
 </html>
