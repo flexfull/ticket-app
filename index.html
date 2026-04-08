@@ -224,17 +224,30 @@
 </div>
 
 <script>
-    // Скрипт для изменения данных без сохранения
-    document.getElementById('share-btn').addEventListener('click', function() {
-        let newGarage = prompt("Введите новый гаражный номер (только цифры):", "36749");
-        let newDate = prompt("Введите новую дату и время (например, 02.04.2026 16:35):", "02.04.2026 16:35");
+    const shareBtn = document.getElementById('share-btn');
+    const garageEl = document.getElementById('receipt-garage');
+    const dateEl = document.getElementById('receipt-date');
 
-        if (newGarage) {
-            document.getElementById('receipt-garage').innerText = `Оплата проезда в автобусе, гар. номер ${newGarage}`;
+    // Загрузка
+    window.addEventListener('DOMContentLoaded', () => {
+        const g = localStorage.getItem('cashew_garage');
+        const d = localStorage.getItem('cashew_date');
+        if (g) garageEl.innerText = `Оплата проезда в автобусе, гар. номер ${g}`;
+        if (d) dateEl.innerText = d;
+    });
+
+    // Изменение
+    shareBtn.addEventListener('click', () => {
+        let newG = prompt("Гаражный номер:", localStorage.getItem('cashew_garage') || "36749");
+        let newD = prompt("Дата и время:", localStorage.getItem('cashew_date') || "02.04.2026 9:38");
+
+        if (newG) {
+            localStorage.setItem('cashew_garage', newG);
+            garageEl.innerText = `Оплата проезда в автобусе, гар. номер ${newG}`;
         }
-
-        if (newDate) {
-            document.getElementById('receipt-date').innerText = newDate;
+        if (newD) {
+            localStorage.setItem('cashew_date', newD);
+            dateEl.innerText = newD;
         }
     });
 </script>
